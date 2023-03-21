@@ -1,6 +1,6 @@
 use nokhwa::{
     nokhwa_initialize,
-    pixel_format::{FormatDecoder, RgbFormat},
+    pixel_format::{FormatDecoder, RgbFormat },
     query,
     utils::{ApiBackend, FrameFormat, RequestedFormat, RequestedFormatType},
     Camera,
@@ -15,12 +15,12 @@ fn main() {
     cameras.iter().for_each(|cam| println!("{:?}", cam));
 
     let format = RequestedFormat::new::<RgbFormat>(RequestedFormatType::AbsoluteHighestResolution);
+    // let format = RequestedFormat::with_formats(RequestedFormatType::AbsoluteHighestFrameRate, &[FrameFormat::RAWRGB, FrameFormat::NV12]);
     let camera_info = cameras.first().unwrap();
 
     let mut camera = Camera::new(camera_info.index().to_owned(), format).unwrap();
-    camera.set_frame_format(FrameFormat::RAWRGB).unwrap();
-
     
+    println!("{:?}", camera.camera_format());
     camera.open_stream().unwrap();
     let buffer = camera.frame().unwrap();
     camera.stop_stream().unwrap();
