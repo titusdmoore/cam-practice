@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 image = "0.24.5"
-nokhwa = { version = "0.10.3", features = ["input-native", "output-wgpu"] }
+nokhwa = { version = "10.3", features = ["input-native", "output-wgpu"] }
